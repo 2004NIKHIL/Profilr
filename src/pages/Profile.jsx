@@ -20,10 +20,6 @@ function Profile() {
   const [errorMessage, setErrorMessage] = useState("");
   const [copied, setCopied] = useState(false);
 
-  const [isOwner, setIsOwner] = useState(
-    localStorage.getItem(`owner_${username}`) === "true",
-  );
-
   useEffect(() => {
     const fetchSupabaseProfile = async () => {
       const { data, error } = await supabase
@@ -88,8 +84,6 @@ function Profile() {
       if (error) throw error;
 
       console.log("Profile saved successfully to Supabase!");
-      localStorage.setItem(`owner_${username}`, "true");
-      setIsOwner(true);
       setIsSaved(true);
     } catch (error) {
       console.error("Error saving profile:", error.message);
@@ -145,7 +139,7 @@ function Profile() {
               ) : (
                 <>
                   <span>{role.toUpperCase()}</span>
-                  {(!isSaved || isOwner) && (
+                  {!isSaved && (
                     <div
                       className="after-save"
                       onClick={() => setIsEditing(true)}
@@ -175,7 +169,7 @@ function Profile() {
               ) : (
                 <>
                   <span>{bio || "No bio yet."}</span>
-                  {(!isSaved || isOwner) && (
+                  {!isSaved && (
                     <div
                       className="after-save"
                       onClick={() => setIsEditingBio(true)}
@@ -251,9 +245,7 @@ function Profile() {
                 </span>
               )}
               {isSaved ? (
-                isOwner && (
-                  <button onClick={() => setIsSaved(false)}>Edit</button>
-                )
+                <button onClick={() => setIsSaved(false)}>Edit</button>
               ) : (
                 <button onClick={handleSave}>Save</button>
               )}
