@@ -17,13 +17,14 @@ function Profile() {
   const [SelectedRepos, setSelectedRepos] = useState([]);
   const [featuredRepos, setFeaturedRepos] = useState([]);
   const [isSaved, setIsSaved] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
 
   useEffect(() => {
     const fetchSupabaseProfile = async () => {
       const { data, error } = await supabase
         .from("profiles")
         .select("*")
-        .eq("username", username)
+        .eq("github_username", username)
         .maybeSingle(); // maybeSingle gracefully returns null if the user hasn't created a profile yet
 
       if (data) {
@@ -70,9 +71,10 @@ function Profile() {
       : "?";
 
   const handleSave = async () => {
+    setErrorMessage(""); // Clears any old errors when you try to save again
     try {
       const { error } = await supabase.from("profiles").upsert({
-        username: username,
+        github_username: username,
         role: role,
         bio: bio,
         selected_repos: SelectedRepos,
@@ -84,7 +86,7 @@ function Profile() {
       setIsSaved(true);
     } catch (error) {
       console.error("Error saving profile:", error.message);
-      alert("There was an error saving your profile.");
+      setErrorMessage(error.message); // Puts the exact Supabase error on the screen instead of a popup
     }
   };
 
@@ -212,6 +214,18 @@ function Profile() {
                 </div>
               ))}
             <div className="save-btn">
+              {errorMessage && (
+                <span
+                  style={{
+                    color: "#ff5f57",
+                    alignSelf: "center",
+                    marginRight: "15px",
+                    fontSize: "13px",
+                  }}
+                >
+                  Error: {errorMessage}
+                </span>
+              )}
               {isSaved ? (
                 <button onClick={() => setIsSaved(false)}>Edit</button>
               ) : (
