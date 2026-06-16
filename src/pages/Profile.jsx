@@ -195,7 +195,7 @@ function Profile() {
               </div>
             </div>
           </div>
-          <div className="repos-box" style={{ minHeight: "400px" }}>
+          <div className="repos-box">
             <h2>Repositories</h2>
 
             {repo
