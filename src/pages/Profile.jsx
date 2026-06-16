@@ -92,7 +92,7 @@ function Profile() {
   };
 
   const handleShare = () => {
-    navigator.clipboard.writeText(window.location.href);
+    navigator.clipboard.writeText(window.location.href); // Copies the REAL working URL
     setCopied(true);
     setTimeout(() => setCopied(false), 2000); // Changes back to "Share" after 2 seconds
   };
@@ -106,9 +106,7 @@ function Profile() {
             <span className="dot-yellow"></span>
             <span className="dot-green"></span>
           </div>
-          <div className="add-pill">
-            {window.location.host}/profile/{username}
-          </div>
+          <div className="add-pill">profilr.app/{username}</div>
           <div>
             <button className="share-btn" onClick={handleShare}>
               {copied ? "Copied!" : "Share"}
