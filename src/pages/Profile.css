@@ -1,0 +1,345 @@
+.box-container {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.profile-box {
+  height: 60%;
+  width: 90%;
+  border: 1px solid rgba(237, 237, 237, 0.11);
+  border-radius: 20px;
+  background: #080808;
+
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.window-header {
+  border-bottom: 1px solid rgba(237, 237, 237, 0.11);
+  height: 60px;
+  display: flex;
+  padding: 0 30px;
+
+  position: relative;
+  padding: 10px 20px;
+  justify-content: space-between;
+  align-items: center;
+}
+.traffic-lights {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+}
+.dot-red,
+.dot-yellow,
+.dot-green {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+}
+.dot-red {
+  background: #ff5f57;
+}
+
+.dot-yellow {
+  background: #ffbd2e;
+}
+
+.dot-green {
+  background: #28c840;
+}
+.add-pill {
+  position: absolute;
+
+  left: 50%;
+  transform: translateX(-50%);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 360px;
+  height: 40px;
+
+  border: 1px solid rgba(237, 237, 237, 0.11);
+  border-radius: 999px;
+
+  color: grey;
+  font-size: 13px;
+}
+
+.share-btn {
+  height: 30px;
+  border-radius: 5px;
+  border: 1px solid rgba(237, 237, 237, 0.11);
+  color: white;
+  background: transparent;
+  padding: 0 15px;
+  cursor: pointer;
+  font-family: inherit;
+  transition: all 0.3s ease;
+  font-size: 13px;
+}
+.share-btn:hover {
+  background: rgba(74, 222, 128, 0.72);
+  color: black;
+  border-color: #4ade80;
+}
+
+.profile-content {
+  display: flex;
+  flex: 1;
+  overflow: hidden;
+}
+
+.intro-profile {
+  margin: 20px;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+
+  min-width: 350px;
+  width: fit-content;
+  max-width: 90%;
+  height: 470px;
+  border: 1px solid rgba(237, 237, 237, 0.11);
+  border-radius: 20px;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+.Avatar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 72px;
+  height: 72px;
+  border-radius: 20px;
+  background: #4ade80;
+  color: #071009;
+  font-size: 22px;
+  font-weight: 800;
+  margin-bottom: 20px;
+}
+
+.profile-name {
+  word-wrap: break-word;
+  color: #ededed;
+  font-size: 22px;
+  font-weight: 700;
+}
+.role {
+  display: flex;
+  margin-top: 10px;
+  width: 0;
+  min-width: 100%;
+  align-items: center;
+}
+
+.role input {
+  display: flex;
+  height: 40px;
+  flex: 1;
+  min-width: 0;
+  border-radius: 5px;
+  border: 1px solid rgba(237, 237, 237, 0.11);
+  color: white;
+  background: transparent;
+  padding: 0 10px;
+  font-family: inherit;
+  transition: all 0.3s ease;
+}
+
+.role input:hover,
+.role input:focus {
+  border-color: #4ade80;
+  box-shadow: 0 0 8px rgba(74, 222, 128, 0.5);
+  outline: none;
+}
+
+.role span {
+  flex: 1;
+  word-break: break-word;
+  min-height: 40px;
+  display: flex;
+  align-items: center;
+  padding: 0 10px;
+  border: 1px solid rgba(237, 237, 237, 0.11);
+  border-radius: 5px;
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.save-box {
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  height: 40px;
+  width: 40px;
+  border-radius: 5px;
+  border: 1px solid rgba(237, 237, 237, 0.11);
+  color: white;
+  background: transparent;
+  padding: 0 10px;
+  margin-left: 5px;
+  cursor: pointer;
+  flex-shrink: 0; /* Prevents the save box from being squished */
+}
+.save-box:hover {
+  background: rgba(74, 222, 128, 0.72);
+  color: black;
+}
+
+.after-save {
+  margin-left: 10px;
+  flex-shrink: 0; /* Prevents the edit button from being squished */
+}
+
+.after-save button {
+  height: 40px;
+  border-radius: 5px;
+  border: 1px solid rgba(237, 237, 237, 0.11);
+  color: white;
+  background: transparent;
+  padding: 0 15px;
+  cursor: pointer;
+  font-family: inherit;
+  transition: all 0.3s ease;
+}
+
+.after-save button:hover {
+  background: rgba(74, 222, 128, 0.72);
+  color: black;
+  border-color: #4ade80;
+}
+
+.bio {
+  margin-top: 15px;
+  width: 0;
+  min-width: 100%;
+  display: flex;
+  align-items: flex-start;
+}
+
+.bio textarea {
+  flex: 1;
+  min-width: 0;
+  height: 180px; /* Adjust this to your preferred height */
+  min-height: 180px; /* Make sure this matches the height above */
+  border-radius: 5px;
+  border: 1px solid rgba(237, 237, 237, 0.11);
+  color: white;
+  background: transparent;
+  padding: 10px;
+  font-family: inherit;
+  resize: vertical; /* Allows the user to drag the bottom corner to make it taller if needed */
+  overflow-y: auto;
+}
+
+.bio textarea:hover,
+.bio textarea:focus {
+  border-color: #4ade80;
+  box-shadow: 0 0 8px rgba(74, 222, 128, 0.5);
+  outline: none;
+}
+
+.bio span {
+  flex: 1;
+  word-break: break-word;
+  white-space: pre-wrap;
+  min-height: 180px; /* Make sure this matches the textarea height so it doesn't shrink when saved */
+  padding: 10px;
+  border: 1px solid rgba(237, 237, 237, 0.11);
+  border-radius: 5px;
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.stat-box {
+  display: flex;
+  margin-top: 20px;
+  border: 1px solid rgba(237, 237, 237, 0.11);
+  border-radius: 8px;
+}
+.stat {
+  flex: 1;
+  padding: 10px;
+  font-size: 13px;
+  text-align: center;
+  color: white;
+  font-family: inherit;
+}
+.stat:not(:last-child) {
+  border-right: 1px solid rgba(237, 237, 237, 0.11);
+}
+
+.repos-box {
+  flex: 1;
+  color: white;
+  padding: 20px;
+  overflow-y: auto;
+  border: 1px solid rgba(237, 237, 237, 0.11);
+  margin: 20px 20px 20px 0;
+  border-radius: 20px;
+}
+
+.spinner-btn {
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  height: 40px;
+  width: 40px;
+  border-radius: 5px;
+  border: 1px solid rgba(237, 237, 237, 0.11);
+  background: transparent;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: all 0.3s ease;
+  padding: 0;
+}
+
+.spinner-btn:hover,
+.spinner-btn.selected {
+  border-color: #4ade80;
+}
+
+.spinner-btn:hover svg,
+.spinner-btn.selected svg {
+  --on: #4ade80 !important; /* Bright green for active dots */
+  --off: rgba(
+    74,
+    222,
+    128,
+    0.3
+  ) !important; /* Dimmed green for inactive dots */
+}
+
+.save-btn {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: auto;
+  position: sticky;
+  bottom: -5px;
+  padding-top: 10px;
+  z-index: 10;
+}
+
+.save-btn button {
+  height: 40px;
+  width: 80px; /* Widened slightly so the word "Save" fits */
+  border-radius: 5px;
+  border: 1px solid rgba(237, 237, 237, 0.11);
+  color: white;
+  background: #080808; /* Dark background so scrolling repos don't bleed through it */
+  cursor: pointer;
+  font-family: inherit;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5); /* A slight drop-shadow makes it look like it's floating */
+}
+
+.save-btn button:hover {
+  background: rgba(74, 222, 128, 0.72);
+  color: black;
+  border-color: #4ade80;
+}
