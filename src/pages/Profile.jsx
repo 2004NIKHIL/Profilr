@@ -19,6 +19,9 @@ function Profile() {
   const [isSaved, setIsSaved] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
   const [copied, setCopied] = useState(false);
+  const [isOwner, setIsOwner] = useState(
+    localStorage.getItem(`owner_${username}`) === "true",
+  );
 
   useEffect(() => {
     const fetchSupabaseProfile = async () => {
@@ -84,6 +87,8 @@ function Profile() {
       if (error) throw error;
 
       console.log("Profile saved successfully to Supabase!");
+      localStorage.setItem(`owner_${username}`, "true");
+      setIsOwner(true);
       setIsSaved(true);
     } catch (error) {
       console.error("Error saving profile:", error.message);
@@ -139,12 +144,14 @@ function Profile() {
               ) : (
                 <>
                   <span>{role.toUpperCase()}</span>
-                  <div
-                    className="after-save"
-                    onClick={() => setIsEditing(true)}
-                  >
-                    <button>EDIT</button>
-                  </div>
+                  {(!isSaved || isOwner) && (
+                    <div
+                      className="after-save"
+                      onClick={() => setIsEditing(true)}
+                    >
+                      <button>EDIT</button>
+                    </div>
+                  )}
                 </>
               )}
             </div>
@@ -167,12 +174,14 @@ function Profile() {
               ) : (
                 <>
                   <span>{bio || "No bio yet."}</span>
-                  <div
-                    className="after-save"
-                    onClick={() => setIsEditingBio(true)}
-                  >
-                    <button>EDIT</button>
-                  </div>
+                  {(!isSaved || isOwner) && (
+                    <div
+                      className="after-save"
+                      onClick={() => setIsEditingBio(true)}
+                    >
+                      <button>EDIT</button>
+                    </div>
+                  )}
                 </>
               )}
             </div>
@@ -191,7 +200,7 @@ function Profile() {
               </div>
             </div>
           </div>
-          <div className="repos-box">
+          <div className="repos-box" style={{ minHeight: "400px" }}>
             <h2>Repositories</h2>
 
             {repo
@@ -199,7 +208,12 @@ function Profile() {
               .map((r) => (
                 <div
                   key={r.id}
-                  style={{ display: "flex", alignItems: "center", gap: "15px" }}
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    gap: "15px",
+                    marginBottom: "15px",
+                  }}
                 >
                   {!isSaved && (
                     <button
@@ -236,7 +250,9 @@ function Profile() {
                 </span>
               )}
               {isSaved ? (
-                <button onClick={() => setIsSaved(false)}>Edit</button>
+                isOwner && (
+                  <button onClick={() => setIsSaved(false)}>Edit</button>
+                )
               ) : (
                 <button onClick={handleSave}>Save</button>
               )}

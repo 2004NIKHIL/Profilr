@@ -11,7 +11,6 @@
   border: 1px solid rgba(237, 237, 237, 0.11);
   border-radius: 20px;
   background: #080808;
-
   position: relative;
   overflow: hidden;
   display: flex;
@@ -93,15 +92,23 @@
 
 /* --- MOBILE RESPONSIVENESS --- */
 @media (max-width: 800px) {
+  .box-container {
+    height: auto;
+    min-height: 100dvh;
+    align-items: flex-start;
+    padding: 20px 0;
+  }
+
   .profile-box {
-    height: 95vh;
-    height: 95dvh;
+    height: auto !important;
     width: 95vw;
+    overflow: visible !important;
   }
 
   .profile-content {
     flex-direction: column;
-    overflow-y: auto; /* Makes the entire window scrollable on mobile */
+    overflow: visible;
+    height: auto;
   }
 
   .intro-profile {
@@ -110,12 +117,16 @@
     max-width: 100%;
     height: auto;
     margin: 15px;
-    overflow-y: visible; /* Removes the double scrollbar */
+    overflow-y: visible;
   }
 
   .repos-box {
-    margin: 0 15px 15px 15px;
-    overflow-y: visible; /* Removes the double scrollbar */
+    margin: 0 10px 15px 10px;
+    width: auto;
+    box-sizing: border-box;
+    max-height: none;
+    overflow-y: visible;
+    padding: 10px;
     flex: none;
   }
 }
