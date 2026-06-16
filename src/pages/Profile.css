@@ -1,5 +1,6 @@
 .box-container {
   height: 100vh;
+  height: 100dvh;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -88,6 +89,42 @@
   background: rgba(74, 222, 128, 0.72);
   color: black;
   border-color: #4ade80;
+}
+
+/* --- MOBILE RESPONSIVENESS --- */
+@media (max-width: 800px) {
+  .profile-box {
+    height: 95vh;
+    height: 95dvh;
+    width: 95vw;
+  }
+
+  .profile-content {
+    flex-direction: column;
+    overflow-y: auto; /* Makes the entire window scrollable on mobile */
+  }
+
+  .intro-profile {
+    width: auto;
+    min-width: 0;
+    max-width: 100%;
+    height: auto;
+    margin: 15px;
+    overflow-y: visible; /* Removes the double scrollbar */
+  }
+
+  .repos-box {
+    margin: 0 15px 15px 15px;
+    overflow-y: visible; /* Removes the double scrollbar */
+    flex: none;
+  }
+}
+
+@media (max-width: 500px) {
+  .add-pill {
+    /* Hides the "profilr.app/user" pill on very small phones so it doesn't overlap the Share button */
+    display: none;
+  }
 }
 
 .profile-content {
