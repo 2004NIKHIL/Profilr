@@ -19,6 +19,7 @@ function Profile() {
   const [isSaved, setIsSaved] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
   const [copied, setCopied] = useState(false);
+
   const [isOwner, setIsOwner] = useState(
     localStorage.getItem(`owner_${username}`) === "true",
   );
@@ -112,7 +113,7 @@ function Profile() {
             <span className="dot-green"></span>
           </div>
           <div className="add-pill">profilr.app/{username}</div>
-          <div>
+          <div style={{ display: "flex", gap: "10px" }}>
             <button className="share-btn" onClick={handleShare}>
               {copied ? "Copied!" : "Share"}
             </button>
