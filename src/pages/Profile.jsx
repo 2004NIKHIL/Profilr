@@ -18,6 +18,7 @@ function Profile() {
   const [featuredRepos, setFeaturedRepos] = useState([]);
   const [isSaved, setIsSaved] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
+  const [copied, setCopied] = useState(false);
 
   useEffect(() => {
     const fetchSupabaseProfile = async () => {
@@ -90,6 +91,12 @@ function Profile() {
     }
   };
 
+  const handleShare = () => {
+    navigator.clipboard.writeText(window.location.href);
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000); // Changes back to "Share" after 2 seconds
+  };
+
   return (
     <div className="box-container">
       <div className="profile-box">
@@ -99,9 +106,13 @@ function Profile() {
             <span className="dot-yellow"></span>
             <span className="dot-green"></span>
           </div>
-          <div className="add-pill">profilr.app/{username}</div>
+          <div className="add-pill">
+            {window.location.host}/profile/{username}
+          </div>
           <div>
-            <button className="share-btn">Share</button>
+            <button className="share-btn" onClick={handleShare}>
+              {copied ? "Copied!" : "Share"}
+            </button>
           </div>
         </div>
         <div className="profile-content">
